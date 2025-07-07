@@ -1,126 +1,57 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jul 07, 2025 at 10:18 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+# 📚 Database Sekolah Sederhana
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+Ini adalah contoh database sederhana untuk sistem informasi sekolah. Database ini dibuat menggunakan MySQL dan mencakup lima tabel utama: siswa, guru, mata_pelajaran, kelas, dan nilai.
 
+---
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+## 🗂 Struktur Tabel
 
---
--- Database: `database_sekolah`
---
+### 1. siswa
+Menyimpan data siswa.
+- id_siswa: ID siswa (primary key)
+- nama: Nama lengkap siswa
+- nis: Nomor Induk Siswa
+- kelas: Kelas siswa
+- alamat: Alamat tempat tinggal
 
--- --------------------------------------------------------
+### 2. guru
+Menyimpan data guru.
+- id_guru: ID guru (primary key)
+- nama: Nama lengkap guru
+- nip: Nomor Induk Pegawai
+- mapel: Mata pelajaran yang diajar
 
---
--- Table structure for table `guru`
---
+### 3. mata_pelajaran
+Menyimpan data mata pelajaran.
+- id_mapel: ID mapel (primary key)
+- nama_mapel: Nama mata pelajaran
+- kode_mapel: Kode unik mapel
 
-CREATE TABLE `guru` (
-  `id_guru` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `nip` varchar(20) NOT NULL,
-  `mapel` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+### 4. kelas
+Menyimpan informasi kelas.
+- id_kelas: ID kelas (primary key)
+- nama_kelas: Nama kelas
+- wali_kelas: Nama wali kelas
 
--- --------------------------------------------------------
+### 5. nilai
+Menyimpan data nilai siswa.
+- id_nilai: ID nilai (primary key)
+- id_siswa: FK ke tabel siswa
+- id_mapel: FK ke tabel mata_pelajaran
+- nilai: Nilai akhir
 
---
--- Table structure for table `kelas`
---
+---
 
-CREATE TABLE `kelas` (
-  `id_kelas` int(11) NOT NULL,
-  `nama_kelas` varchar(10) NOT NULL,
-  `wali_kelas` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+## 💾 Cara Import Database
 
--- --------------------------------------------------------
+1. Buka aplikasi *phpMyAdmin* atau MySQL client lainnya.
+2. Buat database baru dengan nama sekolah.
+3. Import file database.sql dengan cara:
+   - Klik tab Import
+   - Pilih file database.sql
+   - Klik Go
 
---
--- Table structure for table `mata_pelajaran`
---
+---
 
-CREATE TABLE `mata_pelajaran` (
-  `id_mapel` int(11) NOT NULL,
-  `nama_mapel` varchar(50) NOT NULL,
-  `kode_mapel` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nilai`
---
-
-CREATE TABLE `nilai` (
-  `id_nilai` int(11) NOT NULL,
-  `id_siswa` int(11) NOT NULL,
-  `id_mapel` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `siswa`
---
-
-CREATE TABLE `siswa` (
-  `id_siswa` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `nis` varchar(20) NOT NULL,
-  `kelas` varchar(10) NOT NULL,
-  `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `guru`
---
-ALTER TABLE `guru`
-  ADD PRIMARY KEY (`id_guru`);
-
---
--- Indexes for table `kelas`
---
-ALTER TABLE `kelas`
-  ADD PRIMARY KEY (`id_kelas`);
-
---
--- Indexes for table `mata_pelajaran`
---
-ALTER TABLE `mata_pelajaran`
-  ADD PRIMARY KEY (`id_mapel`);
-
---
--- Indexes for table `nilai`
---
-ALTER TABLE `nilai`
-  ADD PRIMARY KEY (`id_nilai`);
-
---
--- Indexes for table `siswa`
---
-ALTER TABLE `siswa`
-  ADD PRIMARY KEY (`id_siswa`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
+## 📌 Catatan
+Database ini hanya contoh sederhana untuk keperluan pembelajaran. Dapat dikembangkan lebih lanjut dengan fitur-fitur seperti login, jadwal pelajaran, kehadiran, dan lainnya.
